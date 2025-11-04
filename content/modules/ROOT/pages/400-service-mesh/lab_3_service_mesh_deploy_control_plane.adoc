@@ -98,7 +98,6 @@ istiod-basic-877565cbf-tt9rt           1/1     Running   0          2m54s
 jaeger-85c5d7c6c4-fnbm2                2/2     Running   0          2m22s
 kiali-59956d7bb8-jzvnf                 1/1     Running   0          100s
 prometheus-7db5b74ddf-5dgw6            2/2     Running   0          2m41s
-wasm-cacher-basic-58894856d5-jhwvm     1/1     Running   0          2m8s
 ----
 +
 Once all the pods are running (like in the example above), hit Ctrl-C and proceed to the next step.
@@ -115,7 +114,7 @@ oc -n istio-system get smcp
 [source,text,options=nowrap]
 ----
 NAME    READY   STATUS            PROFILES      VERSION   AGE
-basic   10/10   ComponentsReady   ["default"]   2.2.6     3m18s
+basic   9/9     ComponentsReady   ["default"]   2.6.10    3m18s
 ----
 +
 The installation has finished successfully when the STATUS column says `ComponentsReady`.
