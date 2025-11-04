@@ -31,6 +31,9 @@ To do so, let's run the following command:
 [source,sh,role=execute]
 ----
 cat << EOF >> ~/.workshoprc
+# Load the oc completion
+source <(oc completion bash)
+
 export OCP_PASS=$(az aro list-credentials --name \
   aro-cluster-${GUID} --resource-group openenv-${GUID} \
   --query="kubeadminPassword" -o tsv)
