@@ -118,19 +118,6 @@ az storage container create --name "aro-metrics" \
 }
 ----
 
-. Deploy ElasticSearch CRDs (not used, but needed for a https://access.redhat.com/solutions/6990588[bug workaround]):
-+
-[source,sh,role=execute]
-----
-oc create -f https://raw.githubusercontent.com/openshift/elasticsearch-operator/release-5.8/bundle/manifests/logging.openshift.io_elasticsearches.yaml
-----
-+
-.Sample Output
-[source,text,options=nowrap]
-----
-customresourcedefinition.apiextensions.k8s.io/elasticsearches.logging.openshift.io created
-----
-
 . Check that `helm` is installed properly:
 +
 [source,sh,role=execute]
