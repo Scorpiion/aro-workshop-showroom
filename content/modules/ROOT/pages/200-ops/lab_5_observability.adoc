@@ -270,7 +270,7 @@ Eventually you'll see the message `No resources found in custom-logging namespac
 [source,sh,role=execute]
 ----
 while ! oc get grafana; do sleep 5; echo -n .; done
-while ! oc get clusterlogging; do sleep 5; echo -n .; done
+while ! oc get clusterlogforwarders; do sleep 5; echo -n .; done
 while ! oc get lokistack; do sleep 5; echo -n .; done
 while ! oc get resourcelocker; do sleep 5; echo -n .; done
 ----
