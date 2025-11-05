@@ -31,6 +31,9 @@ To do so, let's run the following command:
 [source,sh,role=execute]
 ----
 cat << EOF >> ~/.workshoprc
+# Load the oc completion
+source <(oc completion bash)
+
 export OCP_PASS=$(az aro list-credentials --name \
   aro-cluster-${GUID} --resource-group openenv-${GUID} \
   --query="kubeadminPassword" -o tsv)
@@ -102,7 +105,7 @@ az aro show --name aro-cluster-${GUID} --resource-group \
 Now that you're logged into the cluster's console, return to the lab command line console.
 
 . To login to the cluster using the OpenShift CLI tools (`oc`), first we need to retrieve the API server endpoint.
-To do so, run the following command:
+We have previously captured it as a variable inside our `~/.bashrc` file, to fetch it directly, run the following command:
 +
 [source,sh,role=execute]
 ----

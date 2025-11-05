@@ -256,10 +256,10 @@ microsweeper-appservice-cpu   Deployment/microsweeper-appservice   0%/50%    2  
 sudo dnf -y install httpd-tools
 
 FRONTEND_URL=http://$(oc -n microsweeper-ex get route microsweeper-appservice -o jsonpath='{.spec.host}')/
-ab -c100 -n10000 ${FRONTEND_URL}
+ab -c1000 -n100000 ${FRONTEND_URL}
 ----
 
-. Apache Bench will take around 100 seconds to complete (you can also hit CTRL-C to kill the ab command). Then immediately check the status of Horizontal Pod Autoscaler. To do so, run the following command:
+. Apache Bench will take around 30 seconds to complete. Then immediately check the status of Horizontal Pod Autoscaler. To do so, run the following command:
 +
 [source,sh,role=execute]
 ----
