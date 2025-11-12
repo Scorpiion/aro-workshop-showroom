@@ -1,8 +1,8 @@
 == Introduction
 
-Azure Red Hat OpenShift (ARO) clusters store log data inside the cluster by default. Understanding metrics and logs is critical in successfully running your cluster. Included with ARO is the OpenShift Cluster Logging Operator, which is intended to simplify log management and analysis within an ARO cluster, offering centralized log collection, powerful search capabilities, visualization tools, and integration with other other Azure systems like https://azure.microsoft.com/en-us/products/storage/files[Azure Files,window=_blank].
+Azure Red Hat OpenShift (ARO) clusters store log data inside the cluster by default. Understanding metrics and logs is critical in successfully running your cluster. Included with ARO is the OpenShift Cluster Logging Operator, which is intended to simplify log management and analysis within an ARO cluster, offering centralized log collection, powerful search capabilities, visualization tools, and integration with other other Azure systems like https://azure.microsoft.com/en-us/products/storage/blobs[Azure Blob Storage,window=_blank].
 
-In this section of the workshop, we'll configure ARO to forward logs and metrics to Azure Files and view them using Grafana.
+In this section of the workshop, we'll configure ARO to forward logs and metrics to Azure Blob Storage and view them using Grafana.
 
 == Configure Autoscaling for All Worker MachineSets
 
@@ -49,9 +49,9 @@ oc -n openshift-machine-api get machines -l "machine.openshift.io/cluster-api-ma
 oc get nodes -o wide
 ----
 
-== Configure Metrics and Log Forwarding to Azure Files
+== Configure Metrics and Log Forwarding to Azure Blob Storage
 
-. First, let's create our Azure Files storage account. To do so, run the following command::
+. First, let's create our Azure Blob Storage account. To do so, run the following command::
 +
 [source,sh,role=execute]
 ----
@@ -284,7 +284,7 @@ No resources found in custom-logging namespace.
 No resources found in custom-logging namespace.
 ----
 
-. Now that the operators have been successfully installed, let's use a helm chart to deploy Grafana and forward metrics to Azure Files. To do so, run the following command:
+. Now that the operators have been successfully installed, let's use a helm chart to deploy Grafana and forward metrics to Azure Blob Storage. To do so, run the following command:
 +
 [source,sh,role=execute]
 ----
@@ -376,12 +376,12 @@ echo ${STORAGE_CLASS}
 managed-csi
 ----
 
-. Next, let's use another helm chart to deploy forward logs to Azure Files. To do so, run the following command:
+. Next, let's use another helm chart to deploy forward logs to Azure Blob Storage. To do so, run the following command:
 +
 [source,sh,role=execute]
 ----
 helm upgrade -n custom-logging aro-clf-blob \
- --install mobb/aro-clf-blob --version 0.2.4 \
+ --install mobb/aro-clf-blob --version 0.2.12 \
  --set "azure.storageAccount=${AZR_STORAGE_ACCOUNT_NAME}"  \
  --set "azure.storageAccountKey=${AZR_STORAGE_KEY}"   \
  --set "azure.storageContainer=aro-logs" \
@@ -444,7 +444,7 @@ EOF
 
 == View the Metrics and Logs
 
-Now that the metrics and log forwarding are forwarding to Azure Files, let's view them in Grafana.
+Now that the metrics and log forwarding are forwarding to Azure Blob Storage, let's view them in Grafana.
 
 . First, we'll need to fetch the route for Grafana and visit it in our web browser. To get the route, run the following command
 +
@@ -581,5 +581,5 @@ Your cluster is now configured to allow custom metrics.
 
 Here you learned how to:
 
-* Configure metrics and log forwarding to Azure Files
+* Configure metrics and log forwarding to Azure Blob Storage
 * View the metrics and logs in a Grafana dashboard
