@@ -228,8 +228,10 @@ EOF
 [source,sh,role=execute]
 ----
 oc create ns openshift-logging
+oc label namespaces openshift-logging openshift.io/cluster-monitoring="true" --overwrite=true
 
 oc create ns openshift-operators-redhat
+oc label namespaces openshift-operators-redhat openshift.io/cluster-monitoring="true" --overwrite=true
 
 oc create ns resource-locker-operator
 
