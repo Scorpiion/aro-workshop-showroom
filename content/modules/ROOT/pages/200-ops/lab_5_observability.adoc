@@ -453,7 +453,9 @@ data:
 EOF
 ----
 
-== View the Metrics and Logs
+. You can now browse to Observe -> Logs in the console to see your logs arriving from LokiStack
+
+== View the Metrics and Logs in Grafana
 
 Now that the metrics and log forwarding are forwarding to Azure Blob Storage, let's view them in Grafana.
 
@@ -593,4 +595,5 @@ Your cluster is now configured to allow custom metrics.
 Here you learned how to:
 
 * Configure metrics and log forwarding to Azure Blob Storage
+* View your stored logs in the OpenShift Console
 * View the metrics and logs in a Grafana dashboard
