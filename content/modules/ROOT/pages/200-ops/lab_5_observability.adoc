@@ -205,6 +205,12 @@ subscriptions:
   source: community-operators
   sourceNamespace: openshift-marketplace
   namespace: patch-operator
+- name: cluster-observability-operator
+  installPlanApproval: Automatic
+  channel: stable
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  namespace: openshift-cluster-observability-operator
 operatorGroups:
 - name: custom-logging
   targetNamespace: ~
@@ -219,6 +225,9 @@ operatorGroups:
   targetNamespace: all
 - name: patch-operator
   namespace: patch-operator
+  targetNamespace: all
+- name: cluster-observability-operator
+  namespace: openshift-cluster-observability-operator
   targetNamespace: all
 EOF
 ----
